@@ -13,9 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.swing.text.TabExpander;
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -35,24 +33,24 @@ public class RatingService {
 
 
 
-    public void add(Rating rating, String subject) throws AccessFailException{
+    public void add(RatingModel rating, String subject) throws AccessFailException{
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaBuilder criteriaBuilder1 = em.getCriteriaBuilder();
 
-        CriteriaQuery<Teacher> criteriaQuery = criteriaBuilder.createQuery(Teacher.class);
-        CriteriaQuery<Student> studentCriteriaQuery = criteriaBuilder1.createQuery(Student.class);
+        CriteriaQuery<TeacherModel> criteriaQuery = criteriaBuilder.createQuery(TeacherModel.class);
+        CriteriaQuery<StudentModel> studentCriteriaQuery = criteriaBuilder1.createQuery(StudentModel.class);
 
-        Root<Teacher> teacherRoot = criteriaQuery.from(Teacher.class);
-        Root<Student> studentRoot = studentCriteriaQuery.from(Student.class);
+        Root<TeacherModel> teacherRoot = criteriaQuery.from(TeacherModel.class);
+        Root<StudentModel> studentRoot = studentCriteriaQuery.from(StudentModel.class);
 
 
-        Predicate finalPredicate = criteriaBuilder.equal(teacherRoot.get(Teacher_.email), rating.getTeacher().getEmail());
+        Predicate finalPredicate = criteriaBuilder.equal(teacherRoot.get(TeacherModel_.email), rating.getTeacher().getEmail());
         criteriaQuery.select(teacherRoot).where(finalPredicate);
-        Teacher teacher = em.createQuery(criteriaQuery).getResultList().get(0);
+        TeacherModel teacher = em.createQuery(criteriaQuery).getResultList().get(0);
 
-        Predicate finalStudentPredicate = criteriaBuilder1.equal(studentRoot.get(Student_.email), rating.getStudent().getEmail());
+        Predicate finalStudentPredicate = criteriaBuilder1.equal(studentRoot.get(StudentModel_.email), rating.getStudent().getEmail());
         studentCriteriaQuery.select(studentRoot).where(finalStudentPredicate);
-        Student student = em.createQuery(studentCriteriaQuery).getResultList().get(0);
+        StudentModel student = em.createQuery(studentCriteriaQuery).getResultList().get(0);
 
         if(
                 teacher != null && student != null &&
@@ -66,7 +64,7 @@ public class RatingService {
         }
     }
 
-    public List<Rating> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
+    public List<RatingModel> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
         System.out.println(email + " " + subject + " " + startDate + " " + endDate);
         return filterRatingByParam.getByParam(email, subject, startDate, endDate);
     }

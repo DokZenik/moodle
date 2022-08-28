@@ -3,6 +3,7 @@ package com.example.moodle.controllers;
 import com.example.moodle.models.MessageModel;
 import com.example.moodle.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,10 +26,11 @@ public class MessageController {
     }
 
     @MessageMapping("/chat/{to}")
-    public void sendMessage(MessageModel message){
+    public ResponseEntity<Void> sendMessage(MessageModel message){
         System.out.println("message: " + message + " to: " + message.getRecipientId());
         messageService.add(message);
         simpMessagingTemplate.convertAndSend("/topic/messages/" + message.getRecipientId(), message);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/getAllMessages")

@@ -10,15 +10,18 @@ import java.sql.Date;
 @Table(name = "student")
 @Data
 @ToString
-public class Student {
+public class StudentModel {
     @Id
     @Column
     private String email;
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private ClassName className;
+    private ClassNameModel className;
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
+    private InstitutionModel institution;
 }

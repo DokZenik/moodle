@@ -15,12 +15,12 @@ public class TimetableModel {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    private TeacherModel teacher;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private ClassName className;
+    private ClassNameModel className;
 
     @Id
     @Column(name = "day_of_weak")

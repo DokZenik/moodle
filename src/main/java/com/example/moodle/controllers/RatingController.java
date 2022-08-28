@@ -1,6 +1,6 @@
 package com.example.moodle.controllers;
 
-import com.example.moodle.models.Rating;
+import com.example.moodle.models.RatingModel;
 import com.example.moodle.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class RatingController {
     }
 
     @GetMapping("/student/rating")
-    public List<Rating> getRatingByParam(
+    public List<RatingModel> getRatingByParam(
             @RequestParam String email,
             @RequestParam(required = false) String subject,
             @RequestParam(required = false) LocalDate startDate,
@@ -29,7 +29,7 @@ public class RatingController {
     }
 
     @PostMapping("/teacher/evaluate")
-    public ResponseEntity<String> setRating(@RequestBody Rating rating, @RequestParam String subject){
+    public ResponseEntity<String> setRating(@RequestBody RatingModel rating, @RequestParam String subject){
         try {
             ratingService.add(rating, subject);
         }catch (Exception e){

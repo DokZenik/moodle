@@ -1,14 +1,11 @@
 package com.example.moodle.controllers;
 
-import com.example.moodle.models.Rating;
-import com.example.moodle.models.Student;
-import com.example.moodle.services.RatingService;
+import com.example.moodle.models.StudentModel;
 import com.example.moodle.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +21,7 @@ public class StudentController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<String> registration(@RequestBody Student student){
+    public ResponseEntity<String> registration(@RequestBody StudentModel student){
         Pattern pattern = Pattern.compile("^\\w+([.\\w]+)*\\w@\\w((.\\w)*\\w+)*\\.\\w{2,3}$");
         Matcher matcher = pattern.matcher(student.getEmail());
         if(!matcher.matches())
@@ -40,7 +37,7 @@ public class StudentController {
 
 
     @GetMapping("/class")
-    public List<Student> getByClass(@RequestParam String className){
+    public List<StudentModel> getByClass(@RequestParam String className){
         return studentService.getByClass(className);
     }
 

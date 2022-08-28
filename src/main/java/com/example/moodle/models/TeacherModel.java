@@ -5,20 +5,19 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
 @Data
 @ToString
-public class Teacher {
+public class TeacherModel {
     @Id
     @Column
     private String email;
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private ClassName className;
+    private ClassNameModel className;
 
     @Column(name = "teacher_category")
     private String teacherCategory;
@@ -28,10 +27,14 @@ public class Teacher {
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
-    private Subject subject;
+    private SubjectModel subject;
 
     @Column(name = "teacher_position")
     private String teacherPosition;
+
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
+    private InstitutionModel institution;
 
     @ManyToMany
     @JoinTable(
@@ -39,6 +42,6 @@ public class Teacher {
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "class_id")
     )
-    private Set<ClassName> classNameSet;
+    private Set<ClassNameModel> classNameSet;
 
 }

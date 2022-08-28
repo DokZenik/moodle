@@ -1,6 +1,6 @@
 package com.example.moodle.repository;
 
-import com.example.moodle.models.Rating;
+import com.example.moodle.models.RatingModel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,10 +19,10 @@ public class FilterRatingByParam {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Rating> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
+    public List<RatingModel> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Rating> criteriaQuery = criteriaBuilder.createQuery(Rating.class);
-        Root<Rating> ratingRoot = criteriaQuery.from(Rating.class);
+        CriteriaQuery<RatingModel> criteriaQuery = criteriaBuilder.createQuery(RatingModel.class);
+        Root<RatingModel> ratingRoot = criteriaQuery.from(RatingModel.class);
 
         List<Predicate> predicateList = new LinkedList<>();
 

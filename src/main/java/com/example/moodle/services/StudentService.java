@@ -1,6 +1,6 @@
 package com.example.moodle.services;
 
-import com.example.moodle.models.Student;
+import com.example.moodle.models.StudentModel;
 import com.example.moodle.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public void add(Student student){
+    public void add(StudentModel student){
         studentRepository.save(student);
     }
 
-    public List<Student> getByClass(String className){
+    public List<StudentModel> getByClass(String className){
         return studentRepository.getStudentsByClassName(className);
     }
 }

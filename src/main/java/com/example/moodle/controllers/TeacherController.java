@@ -1,17 +1,12 @@
 package com.example.moodle.controllers;
 
-import com.example.moodle.models.ClassName;
-import com.example.moodle.models.Rating;
-import com.example.moodle.models.Student;
-import com.example.moodle.models.Teacher;
-import com.example.moodle.repository.RatingRepository;
-import com.example.moodle.services.RatingService;
+import com.example.moodle.models.ClassNameModel;
+import com.example.moodle.models.TeacherModel;
 import com.example.moodle.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +22,7 @@ public class TeacherController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<String> add(@RequestBody Teacher teacher){
+    public ResponseEntity<String> add(@RequestBody TeacherModel teacher){
         Pattern pattern = Pattern.compile("^\\w+([.\\w]+)*\\w@\\w((.\\w)*\\w+)*\\.\\w{2,3}$");
         Matcher matcher = pattern.matcher(teacher.getEmail());
         if(!matcher.matches())
@@ -41,12 +36,12 @@ public class TeacherController {
     }
 
     @GetMapping("/get")
-    public Teacher getTeacher(@RequestParam String email){
+    public TeacherModel getTeacher(@RequestParam String email){
         return teacherService.getOneTeacher(email);
     }
 
     @GetMapping("/getMyClasses")
-    public Set<ClassName> getMyStudents(@RequestParam String email){
+    public Set<ClassNameModel> getMyStudents(@RequestParam String email){
         return teacherService.getClassesByEmail(email);
     }
 }

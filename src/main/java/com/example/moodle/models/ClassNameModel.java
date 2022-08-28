@@ -6,15 +6,18 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "subject")
+@Table(name = "class_name")
 @Data
 @ToString
-public class Subject {
+public class ClassNameModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_subject")
-    private String nameOfSubject;
+    @Column
+    private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
+    private InstitutionModel institution;
 }
