@@ -24,4 +24,7 @@ public class MessageModel {
 
     @Column(name = "timestamp_of_mess")
     private BigInteger timestamp;
+
+    @Column
+    private String discus;
 }

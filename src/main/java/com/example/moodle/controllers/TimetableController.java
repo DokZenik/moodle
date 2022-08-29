@@ -29,7 +29,7 @@ public class TimetableController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Map<Long, List<TimetableModel>>> get(@RequestParam String className){
+    public ResponseEntity<Map<Integer, List<TimetableModel>>> get(@RequestParam String className){
 
         return ResponseEntity.ok(timetableService.get(className).stream().collect(Collectors.groupingBy(TimetableModel::getDayOfWeak)));
     }
