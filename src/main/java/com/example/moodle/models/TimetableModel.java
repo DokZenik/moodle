@@ -24,13 +24,17 @@ public class TimetableModel {
 
     @Id
     @Column(name = "day_of_weak")
-    private Long dayOfWeak;
+    private Integer dayOfWeak;
 
     @Id
     @Column(name = "lesson_number")
-    private Long lessonNumber;
+    private Integer lessonNumber;
 
     @Column(name = "type_of_weak")
     private Boolean flag;
+
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
+    private InstitutionModel institution;
 
 }

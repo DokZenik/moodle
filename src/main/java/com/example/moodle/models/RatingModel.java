@@ -20,7 +20,7 @@ public class RatingModel {
     private StudentModel student;
 
     @Column(name = "rating_point")
-    private int ratingStudent;
+    private Integer ratingStudent;
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
@@ -33,4 +33,6 @@ public class RatingModel {
     @JoinColumn(name = "teacher_email")
     private TeacherModel teacher;
 
+    @Column
+    private Float importance;
 }

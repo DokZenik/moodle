@@ -23,8 +23,8 @@ public class PublicationModel {
     private ClassNameModel className;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private TeacherModel teacher;
+    @JoinColumn(name = "subject_id")
+    private SubjectModel subject;
 
     @ManyToOne
     @JoinColumn(name = "institution_id")
