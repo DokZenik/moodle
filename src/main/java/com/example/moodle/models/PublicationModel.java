@@ -29,4 +29,7 @@ public class PublicationModel {
     @ManyToOne
     @JoinColumn(name = "institution_id")
     private InstitutionModel institution;
+
+    @Column
+    private Boolean modified;
 }
