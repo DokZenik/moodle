@@ -21,6 +21,9 @@ public class EventModel {
     @JoinColumn(name = "institution_id")
     private InstitutionModel institution;
     @ManyToOne
+    @JoinColumn(name = "class_id")
+    private ClassNameModel className;
+    @ManyToOne
     @JoinColumn(name = "teacher_id")
     private TeacherModel teacher;
 
