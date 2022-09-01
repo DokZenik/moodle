@@ -8,14 +8,12 @@ import javax.persistence.*;
 @Table(name = "publication")
 @Data
 public class PublicationModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column
     private String content;
 
-    @Column(name = "date_of_publication")
+    @Id
+    @Column(name = "timestamp")
     private Long dateOfPublication;
 
     @ManyToOne
