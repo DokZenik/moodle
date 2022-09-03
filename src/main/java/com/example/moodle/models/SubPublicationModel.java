@@ -5,17 +5,20 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "file_attach_publication")
+@Table(name = "sub_publication")
 @Data
-public class AttachmentFileModel {
+public class SubPublicationModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "file_name")
-    private String fileName;
+    @Column
+    private String title;
+
+    @Column
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "publication_id")
     private PublicationModel publication;
+
 }

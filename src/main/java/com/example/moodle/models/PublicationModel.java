@@ -30,4 +30,7 @@ public class PublicationModel {
 
     @Column
     private Boolean modified;
+
+    @Column
+    private Boolean visible;
 }
