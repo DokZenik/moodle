@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Table(name = "publication")
 @Data
 public class PublicationModel {
+    @Column
+    private String title;
 
     @Column
     private String content;
@@ -17,16 +19,8 @@ public class PublicationModel {
     private Long dateOfPublication;
 
     @ManyToOne
-    @JoinColumn(name = "class_id")
-    private ClassNameModel className;
-
-    @ManyToOne
-    @JoinColumn(name = "subject_id")
-    private SubjectModel subject;
-
-    @ManyToOne
-    @JoinColumn(name = "institution_id")
-    private InstitutionModel institution;
+    @JoinColumn(name = "course_id")
+    private CourseModel course;
 
     @Column
     private Boolean modified;

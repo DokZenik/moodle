@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Data
 public class SubPublicationAttachmentFileModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "file_name")

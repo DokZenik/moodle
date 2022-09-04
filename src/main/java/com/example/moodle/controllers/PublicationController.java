@@ -20,4 +20,6 @@ public class PublicationController {
         publicationService.add(publication);
         return ResponseEntity.ok().build();
     }
+
+
 }
