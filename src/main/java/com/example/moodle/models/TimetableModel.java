@@ -1,6 +1,6 @@
 package com.example.moodle.models;
 
-import com.example.moodle.keys.TimetableModelKey;
+import com.example.moodle.repository.keys.TimetableModelKey;
 import lombok.Data;
 import lombok.ToString;
 

@@ -23,7 +23,7 @@ public class MessageModel {
     private String content;
 
     @Column(name = "timestamp_of_mess")
-    private BigInteger timestamp;
+    private Long timestamp;
 
     @Column
     private String discus;

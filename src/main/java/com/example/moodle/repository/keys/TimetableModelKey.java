@@ -1,4 +1,4 @@
-package com.example.moodle.keys;
+package com.example.moodle.repository.keys;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
