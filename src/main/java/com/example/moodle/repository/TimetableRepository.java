@@ -1,6 +1,6 @@
 package com.example.moodle.repository;
 
-import com.example.moodle.repository.keys.TimetableModelKey;
+import com.example.moodle.keys.TimetableModelKey;
 import com.example.moodle.models.TimetableModel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
