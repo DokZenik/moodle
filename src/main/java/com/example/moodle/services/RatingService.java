@@ -34,34 +34,7 @@ public class RatingService {
 
 
     public void add(RatingModel rating, String subject) throws AccessFailException{
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaBuilder criteriaBuilder1 = em.getCriteriaBuilder();
-
-        CriteriaQuery<TeacherModel> criteriaQuery = criteriaBuilder.createQuery(TeacherModel.class);
-        CriteriaQuery<StudentModel> studentCriteriaQuery = criteriaBuilder1.createQuery(StudentModel.class);
-
-        Root<TeacherModel> teacherRoot = criteriaQuery.from(TeacherModel.class);
-        Root<StudentModel> studentRoot = studentCriteriaQuery.from(StudentModel.class);
-
-
-        Predicate finalPredicate = criteriaBuilder.equal(teacherRoot.get(TeacherModel_.email), rating.getTeacher().getEmail());
-        criteriaQuery.select(teacherRoot).where(finalPredicate);
-        TeacherModel teacher = em.createQuery(criteriaQuery).getResultList().get(0);
-
-        Predicate finalStudentPredicate = criteriaBuilder1.equal(studentRoot.get(StudentModel_.email), rating.getStudent().getEmail());
-        studentCriteriaQuery.select(studentRoot).where(finalStudentPredicate);
-        StudentModel student = em.createQuery(studentCriteriaQuery).getResultList().get(0);
-
-        if(
-                teacher != null && student != null &&
-                        teacher.getClassNameSet().stream().anyMatch(c -> student.getClassName().getName().equals(c.getName())) &&
-                        teacher.getSubject().getNameOfSubject().equals(subject)
-        ) {
-            rating.setSubject(teacher.getSubject());
-            ratingRepository.save(rating);
-        }else{
-            throw new AccessFailException();
-        }
+        ratingRepository.save(rating);
     }
 
     public List<RatingModel> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
