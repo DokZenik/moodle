@@ -1,4 +1,4 @@
-package com.example.moodle.controllers;
+package com.example.moodle.rest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

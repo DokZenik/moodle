@@ -1,4 +1,4 @@
-package com.example.moodle.controllers;
+package com.example.moodle.rest;
 
 import com.example.moodle.models.NewsModel;
 import com.example.moodle.services.NewsService;

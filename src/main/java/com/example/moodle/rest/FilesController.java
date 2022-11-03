@@ -1,4 +1,4 @@
-package com.example.moodle.controllers;
+package com.example.moodle.rest;
 
 import com.example.moodle.services.BankTaskService;
 import com.example.moodle.services.FileService;

@@ -1,4 +1,4 @@
-package com.example.moodle.controllers;
+package com.example.moodle.rest;
 
 import com.example.moodle.models.ClassNameModel;
 import com.example.moodle.models.TeacherModel;
@@ -19,20 +19,6 @@ public class TeacherController {
     @Autowired
     public TeacherController(TeacherService teacherService) {
         this.teacherService = teacherService;
-    }
-
-    @PostMapping("/registration")
-    public ResponseEntity<String> add(@RequestBody TeacherModel teacher){
-        Pattern pattern = Pattern.compile("^\\w+([.\\w]+)*\\w@\\w((.\\w)*\\w+)*\\.\\w{2,3}$");
-        Matcher matcher = pattern.matcher(teacher.getEmail());
-        if(!matcher.matches())
-            return ResponseEntity.status(400).body("Incorrect email");
-        try {
-            teacherService.add(teacher);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body("!!!FAIL!!!") ;
-        }
-        return ResponseEntity.status(201).body("OK");
     }
 
     @GetMapping("/get")

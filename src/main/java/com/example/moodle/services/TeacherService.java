@@ -18,6 +18,7 @@ public class TeacherService {
     public TeacherService(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;
     }
+
     public void add(TeacherModel teacher){
         teacherRepository.save(teacher);
     }

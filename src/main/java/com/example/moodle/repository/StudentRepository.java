@@ -11,4 +11,5 @@ import java.util.List;
 public interface StudentRepository extends CrudRepository<StudentModel, String> {
     @Query("SELECT  s FROM StudentModel s WHERE s.className.name = ?1")
     public List<StudentModel> getStudentsByClassName(String className);
+    StudentModel findByEmail(String email);
 }
