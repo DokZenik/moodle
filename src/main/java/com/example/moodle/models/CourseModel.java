@@ -23,4 +23,11 @@ public class CourseModel {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private TeacherModel teacher;
+
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
+    private InstitutionModel institution;
+
+    @Column
+    private String name;
 }

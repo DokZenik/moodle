@@ -17,14 +17,12 @@ public class EventModel {
     private String body;
     @Column(name = "date_of_publication")
     private Long dateOfPublication;
-    @ManyToOne
-    @JoinColumn(name = "institution_id")
-    private InstitutionModel institution;
-    @ManyToOne
-    @JoinColumn(name = "class_id")
-    private ClassNameModel className;
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private TeacherModel teacher;
 
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private CourseModel course;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_of_publication")
+    private TypeOfTask typeOfTask;
 }

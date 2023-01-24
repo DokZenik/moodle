@@ -12,7 +12,7 @@ import java.sql.Date;
 @ToString
 public class StudentModel {
     @Id
-    @Column
+    @JoinColumn(name = "email")
     private String email;
 
     @ManyToOne

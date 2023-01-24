@@ -1,9 +1,12 @@
 package com.example.moodle.rest;
 
 import com.example.moodle.models.AuthenticationRequestDTO;
+import com.example.moodle.models.StudentModel;
 import com.example.moodle.models.UserModel;
 import com.example.moodle.repository.UserRepository;
 import com.example.moodle.security.JwtTokenProvider;
+import com.example.moodle.services.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,11 +31,12 @@ public class AuthenticationRestControllerV1 {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
-
-    public AuthenticationRestControllerV1(AuthenticationManager authenticationManager, UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
+    private final StudentService studentService;
+    public AuthenticationRestControllerV1(AuthenticationManager authenticationManager, UserRepository userRepository, JwtTokenProvider jwtTokenProvider, StudentService studentService) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.jwtTokenProvider = jwtTokenProvider;
+        this.studentService = studentService;
     }
 
     @PostMapping("/login")
@@ -42,8 +46,11 @@ public class AuthenticationRestControllerV1 {
             UserModel userModel = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
             String token = jwtTokenProvider.createToken(request.getEmail(), userModel.getRole().name());
             Map<Object, Object> response = new HashMap<>();
+            StudentModel byEmail = studentService.findByEmail(request.getEmail());
             response.put("email", request.getEmail());
             response.put("token", token);
+            response.put("role", userModel.getRole());
+            response.put("name",byEmail.getFirstName() + " " + byEmail.getLastName() + " " + byEmail.getPatronymicName());
 
             return ResponseEntity.ok(response);
         }catch (AuthenticationException e){

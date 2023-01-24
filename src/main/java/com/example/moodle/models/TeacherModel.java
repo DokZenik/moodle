@@ -13,7 +13,7 @@ import java.util.Set;
 @ToString
 public class TeacherModel {
     @Id
-    @Column
+    @JoinColumn(name = "email")
     private String email;
 
     @ManyToOne
