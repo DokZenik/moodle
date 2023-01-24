@@ -6,6 +6,8 @@ import com.example.moodle.repository.EventStudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,14 +16,20 @@ public class EventStudentService {
     private final EventStudentRepository eventStudentRepository;
     private final EventRepository eventRepository;
     public List<EventDTO> returnAllPublication(Long course, String email){
-        List<Long> allByStudentId = eventStudentRepository.getAllByStudentId(email);
-        allByStudentId.add(123456L);
-        allByStudentId.forEach(System.out::println);
+        List<String> allByStudentId = eventStudentRepository.getAllByStudentId(email);
 
-        return eventRepository.getAllByCourse(course).stream().map(elem -> {
-            if(allByStudentId.contains(elem.getDateOfPublication()))
+        List<EventDTO> eventDTOS = eventRepository.getAllByCourse(course).stream().map(elem -> {
+            if (allByStudentId.contains(elem.getDateOfPublication()))
                 elem.setIsDone(true);
             return elem;
-        }).toList();
+        }).peek(
+                elem ->
+                        elem.setDateOfPublication(
+                                new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
+                                        .format(
+                                                new Date(Long.parseLong(elem.getDateOfPublication()))
+                                        ))
+        ).toList();
+        return eventDTOS;
     }
 }

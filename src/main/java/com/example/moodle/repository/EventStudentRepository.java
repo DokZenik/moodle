@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface EventStudentRepository extends JpaRepository<EventStudentModel, Long> {
     @Query("select esm.event.dateOfPublication from EventStudentModel esm where esm.student.email = ?1")
-    List<Long> getAllByStudentId(String id);
+    List<String> getAllByStudentId(String id);
 }

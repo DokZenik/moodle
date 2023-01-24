@@ -1,11 +1,11 @@
 package com.example.moodle.rest;
 
 import com.example.moodle.models.EventDTO;
-import com.example.moodle.repository.EventRepository;
 import com.example.moodle.services.EventStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

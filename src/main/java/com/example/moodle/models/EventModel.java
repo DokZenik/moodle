@@ -3,6 +3,7 @@ package com.example.moodle.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "event")
@@ -15,8 +16,9 @@ public class EventModel {
     private String title;
     @Column
     private String body;
+
     @Column(name = "date_of_publication")
-    private Long dateOfPublication;
+    private String dateOfPublication;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
@@ -25,4 +27,7 @@ public class EventModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "type_of_publication")
     private TypeOfTask typeOfTask;
+
+    @Column(name = "deadline")
+    private Date deadline;
 }

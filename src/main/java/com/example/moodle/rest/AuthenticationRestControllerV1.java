@@ -50,7 +50,8 @@ public class AuthenticationRestControllerV1 {
             response.put("email", request.getEmail());
             response.put("token", token);
             response.put("role", userModel.getRole());
-            response.put("name",byEmail.getFirstName() + " " + byEmail.getLastName() + " " + byEmail.getPatronymicName());
+            response.put("nameOfStudent",byEmail.getFirstName() + " " + byEmail.getLastName() + " " + byEmail.getPatronymicName());
+            response.put("institution", byEmail.getInstitution().getName());
 
             return ResponseEntity.ok(response);
         }catch (AuthenticationException e){
