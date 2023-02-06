@@ -37,7 +37,7 @@ public class RatingService {
     public List<RatingModelDTO> getByParam(String email, String course, LocalDate startDate, LocalDate endDate){
         System.out.println(email + " " + course + " " + startDate + " " + endDate);
         List<RatingModel> list = filterRatingByParam.getByParam(email, course, startDate, endDate);
-        return list.stream().map(elem -> new RatingModelDTO(elem.getRatingStudent(), elem.getDateOfSet(), elem.getImportance())).toList();
+        return list.stream().map(elem -> new RatingModelDTO(elem.getCourse().getName(), elem.getRatingStudent(), elem.getDateOfSet(), elem.getImportance())).toList();
     }
 
 }

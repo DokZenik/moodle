@@ -31,7 +31,7 @@ public class FilterRatingByParam {
         }
 
         if(course != null){
-            predicateList.add(criteriaBuilder.equal(ratingRoot.get("course").get("nameOfSubject"), course));
+            predicateList.add(criteriaBuilder.equal(ratingRoot.get("course").get("name"), course));
         }
 
         if(startDate != null){
