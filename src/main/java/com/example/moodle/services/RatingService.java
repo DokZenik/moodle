@@ -33,13 +33,11 @@ public class RatingService {
 
 
 
-    public void add(RatingModel rating, String subject) throws AccessFailException{
-        ratingRepository.save(rating);
-    }
 
-    public List<RatingModel> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
-        System.out.println(email + " " + subject + " " + startDate + " " + endDate);
-        return filterRatingByParam.getByParam(email, subject, startDate, endDate);
+    public List<RatingModelDTO> getByParam(String email, String course, LocalDate startDate, LocalDate endDate){
+        System.out.println(email + " " + course + " " + startDate + " " + endDate);
+        List<RatingModel> list = filterRatingByParam.getByParam(email, course, startDate, endDate);
+        return list.stream().map(elem -> new RatingModelDTO(elem.getRatingStudent(), elem.getDateOfSet(), elem.getImportance())).toList();
     }
 
 }

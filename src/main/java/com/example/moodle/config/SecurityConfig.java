@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .apply(jwtConfigurer);
+                .apply(jwtConfigurer)
+                .and().cors();
     }
 
     @Bean

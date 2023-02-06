@@ -8,8 +8,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class EventDTO {
-    private String title;
-    private String body;
+    private String titleOfPublication;
+    private String bodyOfPublication;
     private String dateOfPublication;
     private TypeOfTask typeOfPublication;
     private Boolean isDone;

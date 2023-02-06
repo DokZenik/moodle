@@ -29,10 +29,6 @@ public class RatingModel {
     @Column(name = "date_of_set")
     private Date dateOfSet;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private TeacherModel teacher;
-
     @Column
     private Float importance;
 

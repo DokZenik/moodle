@@ -22,14 +22,7 @@ public class EventStudentService {
             if (allByStudentId.contains(elem.getDateOfPublication()))
                 elem.setIsDone(true);
             return elem;
-        }).peek(
-                elem ->
-                        elem.setDateOfPublication(
-                                new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
-                                        .format(
-                                                new Date(Long.parseLong(elem.getDateOfPublication()))
-                                        ))
-        ).toList();
+        }).toList();
         return eventDTOS;
     }
 }

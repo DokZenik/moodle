@@ -1,9 +1,11 @@
 package com.example.moodle.rest;
 
 import com.example.moodle.models.RatingModel;
+import com.example.moodle.models.RatingModelDTO;
 import com.example.moodle.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -20,21 +22,13 @@ public class RatingController {
     }
 
     @GetMapping("/student/rating")
-    public List<RatingModel> getRatingByParam(
+    @PreAuthorize("hasAuthority('developers:read')")
+    public List<RatingModelDTO> getRatingByParam(
             @RequestParam String email,
-            @RequestParam(required = false) String subject,
+            @RequestParam(required = false) String course,
             @RequestParam(required = false) LocalDate startDate,
             @RequestParam(required = false) LocalDate endDate){
-        return ratingService.getByParam(email, subject, startDate, endDate);
+        return ratingService.getByParam(email, course, startDate, endDate);
     }
 
-    @PostMapping("/teacher/evaluate")
-    public ResponseEntity<String> setRating(@RequestBody RatingModel rating, @RequestParam String subject){
-        try {
-            ratingService.add(rating, subject);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body("!!!FAIL!!!") ;
-        }
-        return ResponseEntity.ok("OK");
-    }
 }

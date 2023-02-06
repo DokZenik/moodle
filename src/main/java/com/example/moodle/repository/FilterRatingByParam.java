@@ -19,7 +19,7 @@ public class FilterRatingByParam {
     @PersistenceContext
     private EntityManager em;
 
-    public List<RatingModel> getByParam(String email, String subject, LocalDate startDate, LocalDate endDate){
+    public List<RatingModel> getByParam(String email, String course, LocalDate startDate, LocalDate endDate){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<RatingModel> criteriaQuery = criteriaBuilder.createQuery(RatingModel.class);
         Root<RatingModel> ratingRoot = criteriaQuery.from(RatingModel.class);
@@ -30,8 +30,8 @@ public class FilterRatingByParam {
             predicateList.add(criteriaBuilder.equal(ratingRoot.get("student").get("email"), email));
         }
 
-        if(subject != null){
-            predicateList.add(criteriaBuilder.equal(ratingRoot.get("subject").get("nameOfSubject"), subject));
+        if(course != null){
+            predicateList.add(criteriaBuilder.equal(ratingRoot.get("course").get("nameOfSubject"), course));
         }
 
         if(startDate != null){
